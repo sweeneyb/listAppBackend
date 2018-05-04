@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - preConditions:
+    - runningAs:
+        username: SA
+
+  - changeSet:
+      id: 1
+      author: sweeneyb
+      changes:
+        - createTable:
+            tableName: list_item
+            columns:
+              - column:
+                  name: id
+                  type: varchar
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: is_done
+                  type: Boolean
+              - column:
+                  name: task
+                  type: varchar(50)
+
+  - changeSet:
+      id: addColumn-owner
+      author: sweeneyb
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: owner
+              type: varchar(50)
+          tableName: list_item
